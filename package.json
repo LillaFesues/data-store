@@ -34,7 +34,7 @@
     "@normalized-db/core": "1.0.4",
     "@normalized-db/denormalizer": "1.0.2",
     "@normalized-db/normalizer": "1.0.0",
-    "idb": "2.0.3",
+    "idb": "LillaFesues/idb#132bee7",
     "rxjs": "5.4.2"
   },
   "devDependencies": {

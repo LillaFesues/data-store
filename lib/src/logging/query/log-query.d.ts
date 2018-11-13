@@ -1,0 +1,34 @@
+import { ValidKey } from '@normalized-db/core';
+import { Context } from '../../context/context';
+import { DataStoreTypes } from '../../model/data-store-types';
+import { Parent } from '../../model/parent';
+import { Predicate } from '../../model/predicate';
+import { Queryable } from '../../query/queryable';
+import { LogAction } from '../model/log-action';
+import { LogEntry } from '../model/log-entry';
+import { LogQueryConfig } from './log-query-config';
+export declare class LogQuery<Types extends DataStoreTypes> implements Queryable<LogEntry<Types>[]> {
+    protected readonly _context: Context<Types>;
+    private readonly _autoCloseContext;
+    private _cachedResult;
+    private _dateRange;
+    private _type;
+    private _key;
+    private _action;
+    private _parent;
+    private _filter?;
+    constructor(_context: Context<Types>, _autoCloseContext: boolean);
+    time(time: Date): this;
+    after(lower: Date, open?: boolean): this;
+    before(upper: Date, open?: boolean): this;
+    between(lower: Date, upper: Date, lowerOpen?: boolean, upperOpen?: boolean): this;
+    type(type: Types): this;
+    key(key: ValidKey): this;
+    action(action: LogAction): this;
+    parent(parent: Parent): this;
+    filter(callback: Predicate<LogEntry<Types>>): this;
+    result(noCache?: boolean): Promise<LogEntry<Types>[]>;
+    invalidateCachedResult(): Promise<void>;
+    protected getQueryConfig(): LogQueryConfig;
+    protected autoClose(): Promise<void>;
+}
