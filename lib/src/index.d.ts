@@ -1,9 +1,5 @@
-export * from './command';
-export * from './context';
-export * from './data-store';
-export * from './error';
-export * from './event';
-export * from './logging';
+import { DataStore } from './data-store';
+import { ObservedDataStore } from './observed-data-store';
 export * from './model';
-export * from './query';
-export * from './utility';
+export * from './builder';
+export { DataStore, ObservedDataStore };
